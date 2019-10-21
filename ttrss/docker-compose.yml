@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ttrss
+      POSTGRES_USER: ttrss
+      POSTGRES_DB: ttrss
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8079:8080
+
+  ttrss:
+    image: clue/ttrss
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+    ports:
+      - 8081:80

@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  wiki:
+    build: .
+    ports:
+      - "8080:8080"
+    container_name: "wiki"
+    volumes:
+      - ./tiddlers:/home/node/wiki/tiddlers
+    environment:
+      - USERNAME=yourusername
+      - PASSWORD=putpasswordhere
